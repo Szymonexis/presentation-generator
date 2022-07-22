@@ -1,0 +1,252 @@
+{
+  "easy": [
+    {
+      "question": "Kto hailowal na zajeciach zdalnych?",
+      "answer": "Kozlowski - od angola",
+      "type": "EASY",
+      "partialPoints": 100,
+      "maxPoints": 100,
+      "hash": "xxs8ir"
+    },
+    {
+      "question": "Jaki owoc przypomina Bisia?",
+      "answer": "Zielona gruszka",
+      "type": "EASY",
+      "partialPoints": 100,
+      "maxPoints": 100,
+      "hash": "90ur0b"
+    },
+    {
+      "question": "Co zostalo zostawione w samochodzie Bartka nad Bialym?",
+      "answer": "Warka Strong (Piwo Starego) (podpowiedz: smrod)",
+      "type": "EASY",
+      "partialPoints": 100,
+      "maxPoints": 100,
+      "hash": "ptjjpc"
+    },
+    {
+      "question": "Jakie postacie ze Shreka pojawily sie na imprezie u Kacpra?",
+      "answer": "Król, Myszy, Shrek, Fiona, Farquaad, Kat, Kot W Butach, Pinokio, Smoczyca, Osioł,",
+      "type": "EASY",
+      "partialPoints": 100,
+      "maxPoints": 1000,
+      "hash": "hcrdh5"
+    },
+    {
+      "question": "Kto dzgal innych w zebra nad Bialym?",
+      "answer": "Iga",
+      "type": "EASY",
+      "partialPoints": 100,
+      "maxPoints": 100,
+      "hash": "rznjhg"
+    },
+    {
+      "question": "Na kim, w swoje urodziny, Maciek i Micha przeprowadzali operacje?",
+      "answer": "Manekin-prezent od Bartka (imie nie znane xd)",
+      "type": "EASY",
+      "partialPoints": 100,
+      "maxPoints": 100,
+      "hash": "l9o3uy"
+    },
+    {
+      "question": "Kto ma martwe kolano?",
+      "answer": "Maciek",
+      "type": "EASY",
+      "partialPoints": 100,
+      "maxPoints": 100,
+      "hash": "u3py9s"
+    },
+    {
+      "question": "Kto po jednym rzucie pilki rozjebal sobie kostke?",
+      "answer": "Szymek",
+      "type": "EASY",
+      "partialPoints": 100,
+      "maxPoints": 100,
+      "hash": "l878dv"
+    }
+  ],
+  "medium": [
+    {
+      "question": "W memie stworzonym przez Bartka 'Hell walker' jakie postacie na nim wystepuja?",
+      "answer": "Nauczyciele: - bis, fulman, tomaszewska, półrola - studenty: gosia, szymon, maciek, kapi",
+      "type": "MEDIUM",
+      "partialPoints": 100,
+      "maxPoints": 800,
+      "hash": "aq56bi"
+    },
+    {
+      "question": "Co odjebal Szymek na pierwszej imprezie u Kacpra?",
+      "answer": "Zjaral kumpli Kacpra, sam sie zjaral poteznie, nie budzil sie na tance hulance Macieja Gosi Radka itd",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 450,
+      "hash": "cp6bhr"
+    },
+    {
+      "question": "Jakie jest oryginalne pochodzenie tła od momentu Macieja?",
+      "answer": "Nintendo (Nintendo Seal, Pieczec Nintendo)",
+      "type": "MEDIUM",
+      "partialPoints": 200,
+      "maxPoints": 200,
+      "hash": "92m2vw"
+    },
+    {
+      "question": "Częścią jakiego kultu stał się Bartek, wyjeżdżając spod namiotów?",
+      "answer": "Kult stworzony przez Miske, kult 'SUUUUUPPPER-PER-PER', oznaczony czarna tasma",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 450,
+      "hash": "77maq3"
+    },
+    {
+      "question": "W jakich okolicznościach Szymek z Bartkiem jedli Arbuzy pod namiotami",
+      "answer": "W deszczu, tańcząc wokół przygaszanego grilla, w spodenkach",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 450,
+      "hash": "vdokur"
+    },
+    {
+      "question": "Jaki był ulubiony sposób skakania do wody Gosi?",
+      "answer": "Wrzucanie za ręce i nogi przez osoby trzecie",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 150,
+      "hash": "wlzrmt"
+    },
+    {
+      "question": "Kto byl najlepszym graczem w Skulla?",
+      "answer": "Iga (podpowiedz: poker-face)",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 150,
+      "hash": "5f0486"
+    },
+    {
+      "question": "Czyje namioty zostały zalane podczas wielkiej powodzi nad Białym 2021?",
+      "answer": "Szymek i Bartek, Radek i Wojtek, Iga",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 450,
+      "hash": "31v1bo"
+    },
+    {
+      "question": "Do jakiego miasta jeździliśmy na zakupy nad Białym?",
+      "answer": "Gostynin",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 150,
+      "hash": "thv3jm"
+    },
+    {
+      "question": "Najlepszy kawalek (piosenka) wyjazdu nad Biale to... ?",
+      "answer": "Parostatek (podpowiedz: Krzysztof, Krawczyk)",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 150,
+      "hash": "wm7bio"
+    },
+    {
+      "question": "Kto myl sie w jeziorze Białym?",
+      "answer": "Micha, Szymek",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": "300",
+      "hash": "pde7it"
+    },
+    {
+      "question": "Kto na jednej z Maćkowych imprez zafarbował się na czerwono?",
+      "answer": "Alban",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 150,
+      "hash": "lvzy8f"
+    },
+    {
+      "question": "Kto jest naszym wydziałowym menelem?",
+      "answer": "Szymek",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 150,
+      "hash": "yppitr"
+    },
+    {
+      "question": "Kto robił torta na niespodziankową impreze urodzinową Szymka?",
+      "answer": "Szymek i Iga",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 300,
+      "hash": "1m1uyy"
+    },
+    {
+      "question": "Co nosił na glowie manekin do końca urodzin Maćka i Michy?",
+      "answer": "Maska Konia",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 150,
+      "hash": "gsbp88"
+    },
+    {
+      "question": "W co gral Bartek na wykladach z Algebry?",
+      "answer": "Minecraft, Heros 3",
+      "type": "MEDIUM",
+      "partialPoints": 150,
+      "maxPoints": 300,
+      "hash": "gmbm50"
+    }
+  ],
+  "hard": [
+    {
+      "question": "Jakie ciala niebieskie byly widoczne na wyjezdzie pod namioty?",
+      "answer": "Jowisz, Saturn",
+      "type": "HARD",
+      "partialPoints": 500,
+      "maxPoints": 1000,
+      "hash": "46vv3k"
+    },
+    {
+      "question": "Ile siedzeń zarwał Szymek?",
+      "answer": "(4 małe, 1 duże,) łącznie 5",
+      "type": "HARD",
+      "partialPoints": 500,
+      "maxPoints": 1000,
+      "hash": "exbvu1"
+    }
+  ],
+  "veryHard": [
+    {
+      "question": "2 + 2",
+      "answer": "4",
+      "type": "VERY_HARD",
+      "partialPoints": 1000,
+      "maxPoints": 1000,
+      "hash": "fqhyih"
+    }
+  ],
+  "frenzy": [
+    {
+      "question": "Jaka czesc ciala czlowieka zostala przedstawiona przez chlopakow na molo nad Bialym?",
+      "answer": "Dowolne synonimy slowa 'penis'",
+      "type": "FRENZY",
+      "partialPoints": 50,
+      "maxPoints": 30,
+      "hash": "m7ag2q"
+    },
+    {
+      "question": "Co znajduje sie za domem Bartka?",
+      "answer": "To co widza za soba",
+      "type": "FRENZY",
+      "partialPoints": 50,
+      "maxPoints": 30,
+      "hash": "0wmeb0"
+    }
+  ],
+  "welcome": {
+    "title": "Welcome pojebańcy XD",
+    "subTitle": "Ognisko Złomowisko - Family Feud"
+  },
+  "intermission": {
+    "title": "Ognisko Złomowisko - Family Feud",
+    "pictureUrl": "./../assets/ezgif.com-gif-maker.png"
+  }
+}
