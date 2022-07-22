@@ -1,0 +1,45 @@
+$outline-girth: 0.4rem;
+
+.data {
+  margin: 2rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.entry {
+  background-color: rgba(0, 85, 255, 0.327);
+  &:not(:last-of-type) {
+    margin-bottom: 2rem;
+  }
+}
+
+.easy {
+  outline: $outline-girth #22c707 solid;
+}
+
+.medium {
+  outline: $outline-girth #c2c707 solid;
+}
+
+.hard {
+  outline: $outline-girth #c75907 solid;
+}
+
+.very_hard {
+  outline: $outline-girth #c70707 solid;
+}
+
+.frenzy {
+  outline: $outline-girth #c507c7 solid;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
