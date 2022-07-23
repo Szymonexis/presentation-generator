@@ -6,286 +6,31 @@
       Zapisz (localStorage)
       <mat-icon> save </mat-icon>
     </button>
-    <button mat-raised-button color="primary" (click)="onGeneratePPTXAndPDF()">
-      Pobierz PPTX
+    <button mat-raised-button color="primary" (click)="onGeneratePPTX()">
+      PPTX
+      <mat-icon> file_download </mat-icon>
+    </button>
+    <button mat-raised-button color="primary" (click)="onGeneratePDF()">
+      PDF
       <mat-icon> file_download </mat-icon>
     </button>
   </mat-card-actions>
   <mat-card-content>
-    <ng-container *ngIf="data.easy">
-      <mat-card
-        [class]="'entry' + ' ' + item.type.toLowerCase()"
-        *ngFor="let item of data.easy; let i = index"
-      >
-        <mat-form-field class="form-field">
-          <label> <b> Pytanie </b> </label>
-          <textarea
-            matInput
-            [(ngModel)]="item.question"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          >
-          </textarea>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Odpowiedz </b> </label>
-          <textarea
-            matInput
-            [(ngModel)]="item.answer"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          >
-          </textarea>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Typ </b> </label>
-          <mat-select [(ngModel)]="item.type">
-            <mat-option *ngFor="let type of types" [value]="type">
-              {{ type }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Punkty cześciowe </b> </label>
-          <input matInput [(ngModel)]="item.partialPoints" type="number" />
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Punkty MAX </b> </label>
-          <input matInput [(ngModel)]="item.maxPoints" type="number" />
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label><b>Hash</b></label>
-          <input matInput [(ngModel)]="item.hash" [disabled]="true" />
-        </mat-form-field>
-      </mat-card>
-    </ng-container>
-
-    <ng-container *ngIf="data.medium">
-      <mat-card
-        [class]="'entry' + ' ' + item.type.toLowerCase()"
-        *ngFor="let item of data.medium; let i = index"
-      >
-        <mat-form-field class="form-field">
-          <label> <b> Pytanie </b> </label>
-          <textarea
-            matInput
-            [(ngModel)]="item.question"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          >
-          </textarea>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Odpowiedz </b> </label>
-          <textarea
-            matInput
-            [(ngModel)]="item.answer"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          >
-          </textarea>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Typ </b> </label>
-          <mat-select [(ngModel)]="item.type">
-            <mat-option *ngFor="let type of types" [value]="type">
-              {{ type }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Punkty cześciowe </b> </label>
-          <input matInput [(ngModel)]="item.partialPoints" type="number" />
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Punkty MAX </b> </label>
-          <input matInput [(ngModel)]="item.maxPoints" type="number" />
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label><b>Hash</b></label>
-          <input matInput [(ngModel)]="item.hash" [disabled]="true" />
-        </mat-form-field>
-      </mat-card>
-    </ng-container>
-
-    <ng-container *ngIf="data.hard">
-      <mat-card
-        [class]="'entry' + ' ' + item.type.toLowerCase()"
-        *ngFor="let item of data.hard; let i = index"
-      >
-        <mat-form-field class="form-field">
-          <label> <b> Pytanie </b> </label>
-          <textarea
-            matInput
-            [(ngModel)]="item.question"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          >
-          </textarea>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Odpowiedz </b> </label>
-          <textarea
-            matInput
-            [(ngModel)]="item.answer"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          >
-          </textarea>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Typ </b> </label>
-          <mat-select [(ngModel)]="item.type">
-            <mat-option *ngFor="let type of types" [value]="type">
-              {{ type }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Punkty cześciowe </b> </label>
-          <input matInput [(ngModel)]="item.partialPoints" type="number" />
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Punkty MAX </b> </label>
-          <input matInput [(ngModel)]="item.maxPoints" type="number" />
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label><b>Hash</b></label>
-          <input matInput [(ngModel)]="item.hash" [disabled]="true" />
-        </mat-form-field>
-      </mat-card>
-    </ng-container>
-
-    <ng-container *ngIf="data.veryHard">
-      <mat-card
-        [class]="'entry' + ' ' + item.type.toLowerCase()"
-        *ngFor="let item of data.veryHard; let i = index"
-      >
-        <mat-form-field class="form-field">
-          <label> <b> Pytanie </b> </label>
-          <textarea
-            matInput
-            [(ngModel)]="item.question"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          >
-          </textarea>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Odpowiedz </b> </label>
-          <textarea
-            matInput
-            [(ngModel)]="item.answer"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          >
-          </textarea>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Typ </b> </label>
-          <mat-select [(ngModel)]="item.type">
-            <mat-option *ngFor="let type of types" [value]="type">
-              {{ type }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Punkty cześciowe </b> </label>
-          <input matInput [(ngModel)]="item.partialPoints" type="number" />
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Punkty MAX </b> </label>
-          <input matInput [(ngModel)]="item.maxPoints" type="number" />
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label><b>Hash</b></label>
-          <input matInput [(ngModel)]="item.hash" [disabled]="true" />
-        </mat-form-field>
-      </mat-card>
-    </ng-container>
-
-    <ng-container *ngIf="data.frenzy">
-      <mat-card
-        [class]="'entry' + ' ' + item.type.toLowerCase()"
-        *ngFor="let item of data.frenzy; let i = index"
-      >
-        <mat-form-field class="form-field">
-          <label> <b> Pytanie </b> </label>
-          <textarea
-            matInput
-            [(ngModel)]="item.question"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          >
-          </textarea>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Odpowiedz </b> </label>
-          <textarea
-            matInput
-            [(ngModel)]="item.answer"
-            cdkTextareaAutosize
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-          >
-          </textarea>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Typ </b> </label>
-          <mat-select [(ngModel)]="item.type">
-            <mat-option *ngFor="let type of types" [value]="type">
-              {{ type }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Punkty cześciowe </b> </label>
-          <input matInput [(ngModel)]="item.partialPoints" type="number" />
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label> <b> Punkty MAX </b> </label>
-          <input matInput [(ngModel)]="item.maxPoints" type="number" />
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-          <label><b>Hash</b></label>
-          <input matInput [(ngModel)]="item.hash" [disabled]="true" />
-        </mat-form-field>
-      </mat-card>
-    </ng-container>
+    <div *ngIf="data.easy" class="entry-container">
+      <app-entry [data]="data.easy"></app-entry>
+    </div>
+    <div *ngIf="data.medium" class="entry-container">
+      <app-entry [data]="data.medium"></app-entry>
+    </div>
+    <div *ngIf="data.hard" class="entry-container">
+      <app-entry [data]="data.hard"></app-entry>
+    </div>
+    <div *ngIf="data.veryHard" class="entry-container">
+      <app-entry [data]="data.veryHard"></app-entry>
+    </div>
+    <div *ngIf="data.frenzy" class="entry-container">
+      <app-entry [data]="data.frenzy"></app-entry>
+    </div>
   </mat-card-content>
 </mat-card>
 

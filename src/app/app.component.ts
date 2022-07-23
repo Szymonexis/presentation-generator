@@ -1,4 +1,6 @@
+import { ElementSchemaRegistry } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import jsPDF from 'jspdf';
 import pptxgen from 'pptxgenjs';
 import { GetDataService } from './get-data.service';
 import {
@@ -21,6 +23,8 @@ export class AppComponent implements OnInit {
   public types = Object.values(QuestionType);
 
   private pptx = new pptxgen();
+  private pdf = new jsPDF('p', 'mm', 'a4');
+  private pdfY = 0;
 
   constructor(private service: GetDataService) {
     this.pptx.defineLayout({
@@ -29,12 +33,60 @@ export class AppComponent implements OnInit {
       height: 6,
     });
     this.pptx.layout = 'CUSTOM';
+
+    this.pdf.setFontSize(10);
   }
 
   public ngOnInit(): void {
     this.service.getData().subscribe((res) => {
       this.data = res;
     });
+  }
+
+  public onSaveChanges(): void {
+    this.data = this.generateSlidesData();
+    this.service.saveData(this.data);
+  }
+
+  public async onGeneratePDF(): Promise<void> {
+    this.onSaveChanges();
+    // const elems = document.getElementsByClassName('entry') as any;
+    // for (let i = 0; i < elems.length; i++) {
+    //   elems[i].style.width = '100%';
+    // }
+    window.print();
+  }
+
+  public onGeneratePPTX(): void {
+    this.onSaveChanges();
+
+    this.welcomeSlide(this.data.welcome);
+
+    this.getQuestions().forEach((value) => {
+      this.intermissionSlide(this.data.intermission, value.hash);
+      this.questionSlide(value, this.data.intermission.pictureUrl);
+    });
+
+    this.pptx.writeFile();
+  }
+
+  private questionEntryPDF(data: Question): void {
+    this.pdf.text(`Pytanie:\n${data.question}`, 0, this.getPdfY());
+    this.pdf.text(`Odpowiedz:\n${data.answer}`, 0, this.getPdfY());
+    this.pdf.text(`Typ:\n${data.type}`, 0, this.getPdfY());
+    this.pdf.text(
+      `Punkty czesciowe:\n${data.partialPoints}`,
+      0,
+      this.getPdfY()
+    );
+    this.pdf.text(`Punkty MAX:\n${data.maxPoints}`, 0, this.getPdfY());
+    this.pdf.text(`HASH:\n${data.hash}`, 0, this.getPdfY());
+    this.pdf.text(`\n`, 0, this.getPdfY());
+  }
+
+  private getQuestions(): Question[] {
+    const { easy, medium, hard, veryHard, frenzy } = this.data;
+    return [...easy, ...medium, ...hard, ...veryHard, ...frenzy];
   }
 
   private generateUID(): string {
@@ -45,44 +97,6 @@ export class AppComponent implements OnInit {
     const firstPartString = ('000' + firstPart.toString(36)).slice(-3);
     const secondPartString = ('000' + secondPart.toString(36)).slice(-3);
     return firstPartString + secondPartString;
-  }
-
-  public onSaveChanges(): void {
-    this.generateData();
-    this.service.saveData(this.data);
-  }
-
-  public onGeneratePPTXAndPDF(): void {
-    this.service.saveData(this.data);
-
-    this.welcomeSlide(this.data.welcome);
-
-    this.data.easy.forEach((value) => {
-      this.intermissionSlide(this.data.intermission, value.hash);
-      this.questionSlide(value, this.data.intermission.pictureUrl);
-    });
-
-    this.data.medium.forEach((value) => {
-      this.intermissionSlide(this.data.intermission, value.hash);
-      this.questionSlide(value, this.data.intermission.pictureUrl);
-    });
-
-    this.data.hard.forEach((value) => {
-      this.intermissionSlide(this.data.intermission, value.hash);
-      this.questionSlide(value, this.data.intermission.pictureUrl);
-    });
-
-    this.data.veryHard.forEach((value) => {
-      this.intermissionSlide(this.data.intermission, value.hash);
-      this.questionSlide(value, this.data.intermission.pictureUrl);
-    });
-
-    this.data.frenzy.forEach((value) => {
-      this.intermissionSlide(this.data.intermission, value.hash);
-      this.questionSlide(value, this.data.intermission.pictureUrl);
-    });
-
-    this.pptx.writeFile();
   }
 
   private welcomeSlide(data: WelcomeSlide): void {
@@ -107,7 +121,7 @@ export class AppComponent implements OnInit {
   }
 
   private questionSlide(data: Question, defaultImagePath: string): void {
-    const slide = this.slideSetup();
+    const slide = this.slideSetup(data.hash);
     const levelColor = this.getLevelColor(data.type);
 
     // hash text
@@ -132,7 +146,7 @@ export class AppComponent implements OnInit {
     });
 
     // partial points text
-    slide.addText(`Pkt. za 1 odp.: ${data.partialPoints}`, {
+    slide.addText(`Pkt. za 1 odp.: ${data.partialPoints}pkt.`, {
       w: 5,
       h: 1,
       align: 'left',
@@ -143,15 +157,21 @@ export class AppComponent implements OnInit {
     });
 
     // max points text
-    slide.addText(`MAX pkt.: ${data.maxPoints}`, {
-      w: 5,
-      h: 1,
-      align: 'right',
-      fontSize: 16,
-      x: 5,
-      y: 0.5,
-      color: 'FFFFFF',
-    });
+    const isFrenzy = data.type === QuestionType.FRENZY;
+    slide.addText(
+      `${isFrenzy ? 'Czas' : 'MAX pkt.'}: ${data.maxPoints}${
+        isFrenzy ? 'sek.' : 'pkt.'
+      }`,
+      {
+        w: 5,
+        h: 1,
+        align: 'right',
+        fontSize: 16,
+        x: 5,
+        y: 0.5,
+        color: 'FFFFFF',
+      }
+    );
 
     // question body
     slide.addText(`Pytanie:\n${data.question}`, {
@@ -205,7 +225,10 @@ export class AppComponent implements OnInit {
     }
   }
 
-  private slideSetup(): pptxgen.Slide {
+  private slideSetup(hash?: string): pptxgen.Slide {
+    const slideMaster = this.pptx.defineSlideMaster({
+      title: hash ?? 'Welcome',
+    });
     const slide = this.pptx.addSlide();
     slide.background = { color: '000000' };
     return slide;
@@ -226,13 +249,16 @@ export class AppComponent implements OnInit {
     }
   }
 
-  private generateData() {
+  private generateSlidesData(): SlidesData {
     const { easy, medium, hard, veryHard, frenzy } = this.data;
     const questions = [...easy, ...medium, ...hard, ...veryHard, ...frenzy];
     const data: SlidesData = {
       ...this.getTypedData(
-        questions.map((value) => {
-          return { ...value, hash: value.hash ?? this.generateUID() };
+        questions.map((value, index) => {
+          return {
+            ...value,
+            hash: value.hash ?? this.generateUID() + ` - ${(index + 1) * 2}`,
+          };
         })
       ),
       welcome: {
@@ -244,6 +270,8 @@ export class AppComponent implements OnInit {
         pictureUrl: './../assets/ezgif.com-gif-maker.png',
       },
     };
+
+    return data;
   }
 
   private getTypedData(data: Question[]): SlideCategories {
@@ -293,5 +321,9 @@ export class AppComponent implements OnInit {
       .filter(Boolean) as Question[];
 
     return { easy, medium, hard, veryHard, frenzy };
+  }
+
+  private getPdfY(): number {
+    return 7.5 + this.pdfY++ * 7.5;
   }
 }

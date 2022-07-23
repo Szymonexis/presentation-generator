@@ -6,9 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { EntryComponent } from './components/entry/entry.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, EntryComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
