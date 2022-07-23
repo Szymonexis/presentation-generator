@@ -6,6 +6,7 @@ export interface Question {
   partialPoints: number;
   maxPoints: number;
   imageUrl?: string;
+  done?: boolean;
 }
 
 export enum QuestionType {

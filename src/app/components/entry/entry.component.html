@@ -44,7 +44,11 @@
       <mat-form-field class="form-field">
         <label>
           <b>
-            {{ item.type === QuestionType.FRENZY ? "Czas (w sekundach)" : "Punkty MAX" }}
+            {{
+              item.type === QuestionType.FRENZY
+                ? "Czas (w sekundach)"
+                : "Punkty MAX"
+            }}
           </b>
         </label>
         <input matInput [(ngModel)]="item.maxPoints" type="number" />
@@ -54,6 +58,12 @@
         <label><b>Hash</b></label>
         <input matInput [(ngModel)]="item.hash" [disabled]="true" />
       </mat-form-field>
+
+      <div class="form-field">
+        <mat-checkbox [(ngModel)]="item.done" (change)="onDone(!!item.done)">
+          Done?
+        </mat-checkbox>
+      </div>
     </mat-card>
   </ng-container>
   <div class="entry"></div>
