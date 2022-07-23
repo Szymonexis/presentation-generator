@@ -1,6 +1,4 @@
-import { ElementSchemaRegistry } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import jsPDF from 'jspdf';
 import pptxgen from 'pptxgenjs';
 import { GetDataService } from './get-data.service';
 import {
@@ -21,10 +19,10 @@ import {
 export class AppComponent implements OnInit {
   public data!: SlidesData;
   public types = Object.values(QuestionType);
+  public hideContent = true;
+  public gameMode = false;
 
   private pptx = new pptxgen();
-  private pdf = new jsPDF('p', 'mm', 'a4');
-  private pdfY = 0;
 
   constructor(private service: GetDataService) {
     this.pptx.defineLayout({
@@ -33,8 +31,6 @@ export class AppComponent implements OnInit {
       height: 6,
     });
     this.pptx.layout = 'CUSTOM';
-
-    this.pdf.setFontSize(10);
   }
 
   public ngOnInit(): void {
@@ -50,10 +46,6 @@ export class AppComponent implements OnInit {
 
   public async onGeneratePDF(): Promise<void> {
     this.onSaveChanges();
-    // const elems = document.getElementsByClassName('entry') as any;
-    // for (let i = 0; i < elems.length; i++) {
-    //   elems[i].style.width = '100%';
-    // }
     window.print();
   }
 
@@ -68,20 +60,6 @@ export class AppComponent implements OnInit {
     });
 
     this.pptx.writeFile();
-  }
-
-  private questionEntryPDF(data: Question): void {
-    this.pdf.text(`Pytanie:\n${data.question}`, 0, this.getPdfY());
-    this.pdf.text(`Odpowiedz:\n${data.answer}`, 0, this.getPdfY());
-    this.pdf.text(`Typ:\n${data.type}`, 0, this.getPdfY());
-    this.pdf.text(
-      `Punkty czesciowe:\n${data.partialPoints}`,
-      0,
-      this.getPdfY()
-    );
-    this.pdf.text(`Punkty MAX:\n${data.maxPoints}`, 0, this.getPdfY());
-    this.pdf.text(`HASH:\n${data.hash}`, 0, this.getPdfY());
-    this.pdf.text(`\n`, 0, this.getPdfY());
   }
 
   private getQuestions(): Question[] {
@@ -226,9 +204,6 @@ export class AppComponent implements OnInit {
   }
 
   private slideSetup(hash?: string): pptxgen.Slide {
-    const slideMaster = this.pptx.defineSlideMaster({
-      title: hash ?? 'Welcome',
-    });
     const slide = this.pptx.addSlide();
     slide.background = { color: '000000' };
     return slide;
@@ -250,8 +225,7 @@ export class AppComponent implements OnInit {
   }
 
   private generateSlidesData(): SlidesData {
-    const { easy, medium, hard, veryHard, frenzy } = this.data;
-    const questions = [...easy, ...medium, ...hard, ...veryHard, ...frenzy];
+    const questions = this.getQuestions();
     const data: SlidesData = {
       ...this.getTypedData(
         questions.map((value, index) => {
@@ -321,9 +295,5 @@ export class AppComponent implements OnInit {
       .filter(Boolean) as Question[];
 
     return { easy, medium, hard, veryHard, frenzy };
-  }
-
-  private getPdfY(): number {
-    return 7.5 + this.pdfY++ * 7.5;
   }
 }

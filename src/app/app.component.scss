@@ -45,7 +45,7 @@ $outline-girth: 0.4rem;
   outline: $outline-girth #c507c7 solid;
 }
 
-.header {
+.header, .buttons {
   display: flex;
   align-items: center;
 }

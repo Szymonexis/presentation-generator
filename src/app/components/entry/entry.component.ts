@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { Question, QuestionType } from 'src/app/interfaces/question.interface';
 
 @Component({
@@ -8,6 +8,7 @@ import { Question, QuestionType } from 'src/app/interfaces/question.interface';
 })
 export class EntryComponent {
   @Input() data!: Question[];
+  @Input() entryFullWidth!: boolean;
   @Output() done = new EventEmitter<boolean>();
 
   public types = Object.values(QuestionType);

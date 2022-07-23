@@ -1,45 +1,61 @@
 <mat-card class="data">
   <mat-card-actions class="header">
     <mat-card-title> Family Feud - Ognisko Złomowisko v1.0 </mat-card-title>
-    <span class="spacer"></span>
-    <button mat-raised-button color="accent" (click)="onSaveChanges()">
-      Zapisz (localStorage)
-      <mat-icon> save </mat-icon>
-    </button>
-    <button mat-raised-button color="primary" (click)="onGeneratePPTX()">
-      PPTX
-      <mat-icon> file_download </mat-icon>
-    </button>
-    <button mat-raised-button color="primary" (click)="onGeneratePDF()">
-      PDF
-      <mat-icon> file_download </mat-icon>
-    </button>
-  </mat-card-actions>
-  <mat-card-content>
-    <div *ngIf="data.easy" class="entry-container">
-      <app-entry [data]="data.easy" (done)="onSaveChanges()"></app-entry>
-    </div>
-    <div *ngIf="data.medium" class="entry-container">
-      <app-entry [data]="data.medium" (done)="onSaveChanges()"></app-entry>
-    </div>
-    <div *ngIf="data.hard" class="entry-container">
-      <app-entry [data]="data.hard" (done)="onSaveChanges()"></app-entry>
-    </div>
-    <div *ngIf="data.veryHard" class="entry-container">
-      <app-entry [data]="data.veryHard" (done)="onSaveChanges()"></app-entry>
-    </div>
-    <div *ngIf="data.frenzy" class="entry-container">
-      <app-entry [data]="data.frenzy" (done)="onSaveChanges()"></app-entry>
-    </div>
-  </mat-card-content>
-</mat-card>
 
-<!-- <mat-card>
-  <mat-card *ngFor="let item of data">
-    <div>{{ item.question }}</div>
-    <div>{{ item.answer }}</div>
-    <div>{{ item.type }}</div>
-    <div>{{ item.partialPoints }}</div>
-    <div>{{ item.maxPoints }}</div>
-  </mat-card>
-</mat-card> -->
+    <span class="spacer"></span>
+
+    <ng-container *ngIf="!gameMode">
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="hideContent = !hideContent"
+      >
+        {{ hideContent ? "Pokaż dane" : "Ukryj dane" }}
+        <mat-icon>
+          {{ hideContent ? "visibility" : "visibility_off" }}
+        </mat-icon>
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="onSaveChanges(); hideContent = false; gameMode = true"
+      >
+        Rozpocznij gre
+        <mat-icon> play_arrow </mat-icon>
+      </button>
+
+      <ng-container *ngIf="!hideContent">
+        <button mat-raised-button color="accent" (click)="onSaveChanges()">
+          Zapisz
+          <mat-icon> save </mat-icon>
+        </button>
+        <button mat-raised-button color="primary" (click)="onGeneratePPTX()">
+          PPTX
+          <mat-icon> file_download </mat-icon>
+        </button>
+        <button mat-raised-button color="primary" (click)="onGeneratePDF()">
+          PDF
+          <mat-icon> file_download </mat-icon>
+        </button>
+      </ng-container>
+    </ng-container>
+  </mat-card-actions>
+
+  <ng-container *ngIf="hideContent; else showGameData">
+    <mat-card-content>
+      <h2>
+        Dane ukryte - kliknij przycisk na gorze by sprawdzic dane lub rozpoczac
+        gre
+      </h2>
+    </mat-card-content>
+  </ng-container>
+  <ng-template #showGameData>
+    <app-data
+      *ngIf="!gameMode"
+      [data]="data"
+      (saveChanges)="onSaveChanges()"
+    ></app-data>
+  </ng-template>
+
+  <app-game *ngIf="gameMode" [data]="data"></app-game>
+</mat-card>

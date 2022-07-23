@@ -2,6 +2,7 @@
   <ng-container *ngFor="let item of data; let i = index">
     <mat-card
       [class]="'entry' + ' ' + item.type.toLowerCase().replace('_', '-')"
+      [style]="entryFullWidth ? 'width: 100%;' : ''"
     >
       <mat-form-field class="form-field">
         <label> <b> Pytanie </b> </label>
@@ -58,12 +59,6 @@
         <label><b>Hash</b></label>
         <input matInput [(ngModel)]="item.hash" [disabled]="true" />
       </mat-form-field>
-
-      <div class="form-field">
-        <mat-checkbox [(ngModel)]="item.done" (change)="onDone(!!item.done)">
-          Done?
-        </mat-checkbox>
-      </div>
     </mat-card>
   </ng-container>
   <div class="entry"></div>

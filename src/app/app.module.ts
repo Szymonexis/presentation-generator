@@ -7,9 +7,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { EntryComponent } from './components/entry/entry.component';
+import { GameComponent } from './game/game.component';
+import { DataComponent } from './data/data.component';
 
 @NgModule({
-  declarations: [AppComponent, EntryComponent],
+  declarations: [AppComponent, EntryComponent, GameComponent, DataComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
