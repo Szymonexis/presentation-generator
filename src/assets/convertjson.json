@@ -1,6 +1,13 @@
 {
   "easy": [
     {
+      "question": "Kto rucha matke Szymona?",
+      "answer": "a kto nie rucha xDDD",
+      "type": "EASY",
+      "partialPoints": 100,
+      "maxPoints": 100
+    },
+    {
       "question": "Kto hailowal na zajeciach zdalnych?",
       "answer": "Kozlowski - od angola",
       "type": "EASY",
